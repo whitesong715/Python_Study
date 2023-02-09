@@ -1,26 +1,32 @@
 import os
 from google.cloud import translate
+# import 에러 뜨면    pip install google-cloud-translate==2.0.1    터미널에 ㄱㄱ
 
-credential_path = r"D:\Motigo\agile-timing-377213-220487b64b90.json"
+credential_path = r"D:\Motigo\GCP\agile-timing-377213-220487b64b90.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 
-# cloud 번역 지원 언어 출력
+#cloud 번역 지원 언어 출력
 def get_supported_languages(project_id="agile-timing-377213"):
     """Getting a list of supported language codes."""
 
     client = translate.TranslationServiceClient()
 
-    parent = f"projects/{project_id}"
+    location = "global"
+
+    parent = f"projects/{project_id}/locations/{location}"
 
     # Supported language codes: https://cloud.google.com/translate/docs/languages
-    response = client.get_supported_languages(parent=parent)
+    response = client.get_supported_languages(
+        display_language_code="en", parent=parent  # target language code
+    )
 
     # List language codes of supported languages.
     print("Supported Languages:")
     for language in response.languages:
         print('{}: {}'.format(language.display_name, language.language_code))
 
+get_supported_languages()
 
 def translate_text_with_model(target, text, model="nmt"):
     """Translates text into the target language.
@@ -46,12 +52,10 @@ def translate_text_with_model(target, text, model="nmt"):
     print(u"Detected source language: {}".format(result["detectedSourceLanguage"]))
 
 
-#get_supported_languages()
-
 target= "ko"
 text = input("번역할 내용 입력: ")
 translate_text_with_model(target, text)
 
 target= "en"
-text = "안녕하세요"
+text = input("번역할 내용 입력: ")
 translate_text_with_model(target, text)
