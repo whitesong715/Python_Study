@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate(r"D:\Motigo\firebase\agile-timing-377213-firebase-adminsdk-y2ns8-785af00be8.json")
+cred = credentials.Certificate("agile-timing-377213-firebase-adminsdk-y2ns8-785af00be8.json")
 firebase_admin.initialize_app(cred,{
     'databaseURL' : 'https://agile-timing-377213-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })

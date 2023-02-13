@@ -1,8 +1,8 @@
 import os
 from google.cloud import translate
-# import 에러 뜨면    pip install google-cloud-translate==2.0.1    터미널에 ㄱㄱ
+# import 에러 뜨면    pip install google-cloud-translate==2.0.1  터미널에 ㄱㄱ
 
-credential_path = r"D:\Motigo\GCP\agile-timing-377213-220487b64b90.json"
+credential_path = "agile-timing-377213-220487b64b90.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
 
 

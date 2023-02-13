@@ -1,10 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그에 대해 알아보자</title>
 </head>
+
 <body>
 
+    <h1>form 태그</h1>
+    <p>
+        form 태그는 서버에 데이터를 전송해주는 기능을 하는 태그이다.<br>
+        주요 속성 : method, action<br>
+        method : 데이터를 전송할 방식을 결정한다. get과 post로 나뉜다.<br>
+        action : 요청할 주소를 작성한다.<br>
+    </p>
+
+    <h2>get방식으로 데이터 전송하기</h2>
+
+    <form method="GET" action="../210316/images/yoo.jpg">
+        <input type="text" name="id">
+        <input type="password" name="pw">
+        <input type="submit" value="로그인">
+
+        <!--
+        로그인 버튼을 누르면 url창 주소 마지막에 ?id=yj&pw=1234 생김 : get방식
+        주소창에 있는 ?는 ?부터 값이라는 뜻
+        -->
+
+    </form>
+
+
+    <h2>post방식으로 데이터 전송하기</h2>
+
+    <form method="POST" action="210316/210316_08_hyperlinktag.html">
+        아이디<input type="text" name="id"><br>
+        패스워드<input type="password" name="pw"><br>
+        <input type="submit" value="로그인">
+
+        <!-- url창에 데이터가 보이지 않는다 -->
+
+    </form>
+
+    <p>
+        form 태그의 method속성은 반드시 필요한 속성으로 default값을 가지고 있다.<br>
+        default값 : get
+    </p>
+
+    <form action="210316_07_multimediatag.html"> <!-- 이렇게 하면 안되나? -->
+        <input type="text" name="test">
+        <input type="submit" value="전송">
+
+    </form>
+
+
+    <h2>폼 요소를 그룹으로 묶고, 묶은 폼 요소에 명칭을 붙이는 fieldset태그와 legend태그</h2>
+    <fieldset>
+        <legend>검색창</legend>
+
+            <form action="">
+                <p>검색어를 입력</p>
+                <input type="text" name ="test">
+                <input type="submit" value="전송">
+            </form>
+    </fieldset>
+
+
+
+    <h1>사용자로부터 데이터를 입력받기 위한 input태그</h1>
+    <p>
+        input태그는 사용자가 입력할 수 있는 화면을 출력하는 태그.<br>
+        입력화면은 type속성에 따라 결정된다.<br>
+        input태그는 반드시 form태그에 있어야하는것은 아니다.
+    </p>
+
+
+
+
+    <h3> type : text, password</h3>
+
+    <p>text, password타입은 한 줄 문자를 입력받는 화면</p> <!-- 무한대로 입력 가능 -->
+    <input type="text" id="str" name="str"><br>
+
+    <input type="text" name = "str" placeholder="검색어를 입력하세요"><br>  <!--placeholder : 입력전 뜨는 글자 -->
+
+    <input type="text" name = "str" value="오늘 아침 추워요" readonly><br> <!-- 초기값으로 들어감 -->
+    <!-- readonly : 값 수정 불가능 -> readonly 쓸 때는 value값이 있어야한다 -->
+
+    <input type="text" name ="str" size="3"><br> <!-- size : 입력창의 (보여지는)크기 -->
+
+    <input type="text" name ="str" size="3" maxlength="3"><br> <!-- maxlength="3" : 최대 3글자만 입력가능 -->
+
+
+    <form action="">
+        <input type="text" size="8" minlength="3"> <!-- 2자 입력하면 3자 이상 입력하려고 팝업알림창이 뜬다 -->
+        <input type="text" name="keyword" required> <!-- required 있으면 꼭 입력하라고 팝업알림창 뜬다 -->
+        <input type="submit" value="제출">
+
+    </form>
+
+    <br>
+
+    passwordtype <input type="password" name="pw"> <!-- password 타입은 입력값을 가려준다 -->
+
+
+
+
+    <h3>type : hidden</h3>
+    <p>
+        사용자에게 보여줄 데이터는 아니지만,
+        서비스를 실행할 때 반드시 보내야 하는 값을 설정할 때 사용<br>
+        value속성에 값을 반드시 입력해야한다.
+    </p>
+
+    <!-- 게시물 수정 -->
+    <form>
+        제목<input type="text" name="title" value="이거 수정해봐 (냉무)">
+        내용<input type="text" name="content">
+        <input type="hidden" name="boardNo" value="1">
+        <input type="submit" value="수정">
+    </form>
+
+
+
+
+    <h3>type : button</h3>
+    <p>버튼 모양을 출력 -> 반드시 기능(이벤트 처리)을 추가해야한다 -> 자바스크립트와 연결해서 사용</p>
+
+    <!-- value속성을 추가하면 버튼 안에 문구가 뜬다 -->
+
+    아이디<input type="text" name="id">
+    <input type="button" value="아이디 중복확인" onclick="test();">
+    <script>
+        function test() {
+            alert("왜 눌러!!");
+            open("", "_blank", "width=300,height=300");
+        }
+    </script>
+
+
+
+
+    <h3>type : checkbox</h3>
+
+    <p>
+        checkbox 타입은 다중선택 가능 <br>
+        선택사항을 두고 체크, 선책할 수 있는 화면을 출력<br>
+        name/value값을 반드시 지정해야한다.<br>
+        동일한 선택조건(카테고리)에 있을 경우 name을 동일하게 설정한다. ( 서버에서 데이터를 배열형식으로 받아오기 때문 )
+    </p>
+
+    <fieldset>
+        <legend>취미</legend>
+        <form action="">
+            <!-- input*4 -->
+            <label><input type="checkbox" name="hobby" value="운동">운동</label>
+
+            <input type="checkbox" name="code" value="코딩" checked> <!-- checked 속성은 기본적으로 체크되어있게 한다 -->
+            <label for="code">코딩</label>
+
+            <input type="checkbox" name="hobby" value="독서" disabled>독서 <!-- disabled 속성은 체크 불가능하게 설정한다 -->
+
+            <input type="checkbox" name="hobby" value="여행">여행
+
+            <input type="submit" value="전송">
+        </form>
+
+        <!-- 운동 코딩 두개를 선택하면 url창에 ?hobby1=운동&hobby2=코딩 이렇게 추가됌 -->
+
+        <!-- 체크박스는 네모칸만 클릭 가능 -> 글자를 눌러도 클릭 안된다 -> 불편 -->
+        <!-- 해결 방법 : label태그 ( 체크박스와 문구를 그룹으로 묶어서 그 그룹안에서 클릭하면 체크가 되도록 한다 )-->
+        <!-- 방법 1 input태그를 label태그로 묶기 -->
+        <!-- 방법 2 label for 태그를 이용 -->
+
+
+    </fieldset>
+
+
+    <h3>type : radio</h3>
+
+    <p>
+        radio 타입은 예시 중 한가지만 선택 가능 ( 다중선택 불가능 )<br>
+    </p>
+
+    <fieldset>
+        <legend>취미</legend>
+        <form action="">
+
+            <label><input type="checkbox" name="hobby" value="운동">운동</label>
+
+            <input type="checkbox" name="code" value="코딩" checked> <!-- checked 속성은 기본적으로 체크되어있게 한다 -->
+            <label for="code">코딩</label>
+
+            <input type="checkbox" name="hobby" value="독서" disabled>독서 <!-- disabled 속성은 체크 불가능하게 설정한다 -->
+
+            <input type="checkbox" name="hobby" value="여행">여행
+
+            <p>성별</p>
+            <label><input type="radio" name="gender" value="M">남자</label>
+            <label><input type="radio" name="gender" value="F" checked>여자</label>
+
+            <input type="submit" value="전송">
+        </form>
+    </fieldset>
+
+
+
+
+    <h3>type : file</h3>
+
+    <p>
+        파일을 서버에 업로드할 때 사용 ( local에 있는 파일을 가져올 때 사용 )<br>
+        바이너리 파일이 전송되기 때문에 form으로 전송할 때는 encoding값을 변경해야한다. : enctype 속성 이용 <br>
+        method는 반드시 post형식으로 전송해야한다.
+
+    </p>
+    <form action="" method="POST" enctype ="multipart/form-data">
+
+        <input type="file" name = "upload", accept = "video/*" multiple> <!-- '파일 선택' 버튼이 생성된다 -->
+
+        <!-- accept 속성 x : 모든 파일, accept = "audio/*" : 오디오 파일만 업로드 가능 "-->
+
+        <!-- 파일 한개만 선택 가능, 단 multiple속성을 작성하면 다중파일 선택 가능 -->
+
+    </form>
+
+
+
+
+    <h3>type : image</h3>
+
+    <p>
+        image 타입은 사진을 submit으로 이용하는 타입
+    </p>
+
+    <form action="">
+        <input type="text" name="title">
+        <input type="image" src="../210316/images/yoo.jpg" name="test" value="test" width="100" height="100">
+    </form>
+
+
+
+
+
+    <h3>type : submit, reset</h3>
+
+    <p>
+        submit : form 태그의 자식인 input태그의 값을 전송하는 태그
+        reset : form 태그의 자식인 input태그의 값을 초기화하는 태그
+        submit, reset은 버튼으로 출력되고, 버튼에 출력되는 내용은 value속성으로 설정된다.
+    </p>
+
+    <form action="">
+        아이디<input type="text" name="userId"><br>
+        패스워드<input type="password" name="password"><br>
+        취미<br>
+
+        <input type="checkbox" name="hobby" value="운동"> 운동
+        <input type="checkbox" name="hobby" value="독서"> 독서
+        <input type="checkbox" name="hobby" value="코딩"> 코딩
+        <input type="checkbox" name="hobby" value="잠"> 잠자기<br>
+
+        <!-- <input type="submit" value="회원가입"> -->
+        <button type="button" onclick="test();">회원가입</button>
+        <!--
+        button 타입은 기본적으로 submit 기능을 가진다
+        하지만 type을 button으로 할 경우 submit 기능을 갖지 않는다 -->
+
+        <input type="reset" value="취소">
+    </form>
+
+
+    <h2>html5에서 지원하는 type들</h2>
+
+    <h3>type : color</h3>
+
+    <p>
+        color타입은 색상을 선택하는 타입
+    </p>
+
+    <input type="color" name="background" value="#ff0000"> <!-- value는 16진수 rgb값/ 빨초파 / red / ff는 10진수로 255 -->
+    <input type="color" name="background" value="#ffff00"> <!-- yellow -->
+
+
+
+
+    <h3>type : date, datetime, datetime-local, month, week, time</h3>
+    <p>
+        날짜를 입력받는 타입
+    </p>
+
+    <!-- 자동완성 : 태그명 입력하고 tab키 -->
+
+    <form action="">
+        <input type="date" name="birthday" min="2021-01-01" max="2021-12-31"> <!-- min max로 날짜 범위 좁히기 가능 : min max를 이렇게 정하면 올해 안에서만 선택 가능 -->
+
+        <input type="datetime"> <!-- 날짜와 시간을 직접 작성 -->
+
+        <input type="datetime-local"> <!-- 캘린더 ui로 날짜와 시간까지 선택 가능 -->
+
+        <input type="month"> <!-- 월(달) 만 선택 가능 -->
+
+        <input type="week"> <!-- 주를 선택 가능, 올해의 몇번째 주인지 알려줌 -->
+
+        <input type="time"> <!-- 시간 선택 가능 -->
+
+        <input type="submit" value="전송">
+        <!-- 문자열로 넘어간다 -> 서버에서 날짜타입으로 받고싶으면 파싱 해야한다 -->
+    </form>
+
+
+    <h3>type : number</h3>
+
+    <p>
+        number 타입은 숫자 입력 전용
+    </p>
+
+    <form action="">
+
+        <input type="number"> <!-- 창 끝에 엘리베이터 버튼같은것이 있어서 위를 누르면 숫자 올라가고, 아래를 누르면 숫자가 내려간다 -->
+
+        <input type="number" max="100" min="0" step="10" name="su"> <!-- 100 초과 0미만 숫자 입력 안되고, 숫자가 커지고 작아지는 단위가 10 -->
+
+        <input type="submit"> <!-- 200누르면 100이하여야한다고 알림창 뜬다 -->
+
+        <!-- 문자열로 넘어간다 -> 서버에서 숫자타입으로 받고싶으면 파싱 해야한다 -->
+
+    </form>
+
+
+
+    <h3>type : search, range, url, email</h3>
+
+    <p>
+        search : 검색어 입력창, text타입과 유사하나 x버튼이 있다 ( 전체 지우는 용)<br>
+        range : 일정 범위에 있는 값을 표시, 속성에 max와 min, step값이 필요하다 <br>
+        url : 사이트의 주소를 입력받는 입력창, text타입과 유사하나 입력값에 'http://' 문구가 있는지 체크한다<br>
+        email : 이메일을 입력받는 입력창, text타입과 유사하나 '@'가 있는지 ( 이메일 형식에 맞는지 ) 체크한다<br>
+    </p>
+
+    <form action="">
+
+        <input type="search" name="keyword"><br>
+
+        <!-- 자동완성 : 태그명:타입 -->
+        <input type="range" name="ra" min="0" max="10" step="2"> <br><!-- 세단계로 나눠서 상중하 이렇게 할수도 있다 -->
+
+        <input type="url" name="url"><br> <!-- http:// 로 시작하지 않으면 알림창이 뜬다 -->
+
+        <input type="email" name="email"><br> <!-- 문자@문자 형식이 아니면 알림창이 뜬다 -->
+
+        <input type="submit" value="전송">
+    </form>
+
+
+
+    <h2>기타 입력 창 태그들</h2>
+
+    <p>
+        select : 콤보박스 형식으로 선택하는 것 ( 예시 : 검색 카테고리 ), 자식태그로 option태그(value값)를 가지고 있다 <br>
+        detailist : input태그 text타입의 자동완성기능을 할 수 있게 하는 태그, 자식태그로 option태그(value값)를 가지고 있다 <br>
+        textarea : 여러문장을 입력받게 하는 태그, 긴글이나 소개글, 게시판 내용등에 쓰인다. 특정크기를 속성으로 정해야한다. ( cols, rows)
+
+    </p>
+
+    <h3>type : select, datalist, textarea </h3>
+
+    <form action="">
+
+        <select name="category" multiple> <!-- multiple 속성 사용하면 여러개 고를 수 있다 -->
+            <optgroup label="광역시">
+                <option value="서울">서울</option>
+                <option value="대전">대전</option>
+                <option value="부산">부산</option>
+            </optgroup>
+            <optgroup label="도">
+                <option value="경기도">경기도</option>
+                <option value="강원도">강원도</option>
+                <option value="전라도">전라도</option>
+            </optgroup>
+        </select>
+
+
+        <br>
+
+
+        <input type="text" name="sample" list="data">
+
+        <datalist id="data">
+            <option value="유병승">유병승</option>
+            <option value="김상현">김상현</option>
+            <option value="김예진">김예진</option>
+            <option value="김지한">김지한</option>
+            <option value="제인혁">제인혁</option>
+        </datalist>
+
+        <input type="submit" value="제출">
+
+
+        <br>
+
+
+        <textarea name="info" cols="30" rows="5" style="resize: none;">안녕하세요</textarea>
+
+        <!-- cols : 가로 칸 수 , rows : 행 수(줄 수) -->
+        <!-- css 사용해서 style="resize: none;" 하면 크기가 고정된다 -->
+
+        <!-- textarea 주의할 점 -->
+        <!-- 시작태그와 종료태그를 한줄로 작성할것, 그렇지 않으면 텍스트 입력시 몇칸이 띄어져서 써진다 -->
+
+    </form>
+
+
+    <h3>재미로 보는 progress</h3>
+
+    <p>진행상황 등을 나타내는 바 </p>
+
+    <progress id="p" value="0" max="100"></progress>
+    <script>
+        setInterval(()=>{
+            let pro=document.getElementById("p");
+            pro.value+=(Math.random()*20);
+        }, 500);
+    </script>
+
 </body>
+
 </html>
